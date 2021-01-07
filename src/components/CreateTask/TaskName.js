@@ -16,6 +16,7 @@ export default function TaskName( {
 	onTaskChange = () => {},
 } ) {
 	const bg = useColorModeValue('white', 'gray.500');
+	const negBg = useColorModeValue('gray.500', 'white');
 
 	const handleChange = e => {
 		onTaskChange( { taskName: e.target.value } );
@@ -32,6 +33,7 @@ export default function TaskName( {
 					placeholder="Task name"
 					value={ value }
 					onChange={ handleChange }
+					_placeholder={{color: negBg}}
 				/>
 			</InputGroup>
 		</FormControl>

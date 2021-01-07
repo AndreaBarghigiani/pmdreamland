@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react"
 
 export default function TaskProgress( { value, onTaskChange = () => {} } ){
-	const trackBg = useColorModeValue( 'blue.100', 'blue.200');
-	const filledTrackBg = useColorModeValue( 'blue.400', 'blue.800');
+	// const trackBg = useColorModeValue( 'blue.100', 'blue.400');
+	// const filledTrackBg = useColorModeValue( 'blue.400', 'blue.100');
 
 	const handleChange = (val) => {
 		onTaskChange( { taskProgress: val } );
@@ -27,8 +27,8 @@ export default function TaskProgress( { value, onTaskChange = () => {} } ){
 				onChange={ handleChange }
 				step={ 5 }
 			>
-				<SliderTrack bg={trackBg}>
-					<SliderFilledTrack bg={filledTrackBg} />
+				<SliderTrack bg={'blue.100'}>
+					<SliderFilledTrack bg={'blue.400'} />
 				</SliderTrack>
 				<SliderThumb />
 			</Slider>

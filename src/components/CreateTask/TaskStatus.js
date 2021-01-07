@@ -8,15 +8,9 @@ import {
 	// useBreakpoint,
 } from '@chakra-ui/react';
 
+import { taskStatuses } from '../../sampleData'
 export default function TaskStatus( {label, value, onTaskChange = () => {} }) {
-	const options = [
-		{ value: 'tomorrow', text: 'Tomorrow' },
-		{ value: 'two-three-days', text: 'Two or three days' },
-		{ value: 'less-week', text: 'Less than a week' },
-		{ value: 'one-week', text: 'One week' },
-		{ value: 'two-weeks', text: 'Two weeks' },
-		{ value: 'more', text: 'More...' },
-	];
+	const options = taskStatuses;
 
 	const bg = useColorModeValue('white', 'gray.500');
 	const handleChange = e => {
