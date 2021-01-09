@@ -16,13 +16,14 @@ function App() {
 	return (
 		<Box textAlign="center" fontSize="xl">
 			<Grid p={3}>
-				<Header addTask={ setAddTask } />
-				{ user 
-				? (
+				<Header addTask={setAddTask} />
+				{user ? (
 					<VStack spacing={8}>
-						<Entry addTask={addTask} />
+						<Entry showForm={addTask} />
 					</VStack>
-				) : <Heading>You must be logged in</Heading> }
+				) : (
+					<Heading>You must be logged in</Heading>
+				)}
 			</Grid>
 		</Box>
 	);

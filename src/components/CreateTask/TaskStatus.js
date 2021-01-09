@@ -8,14 +8,14 @@ import {
 } from '@chakra-ui/react';
 
 import { taskStatuses } from '../../utility';
+import { useForm } from '../../lib/FormContext';
 
-export default function TaskStatus( {label, value, onTaskChange = () => {} }) {
+export default function TaskStatus( { label }) {
 	const options = taskStatuses;
 
 	const bg = useColorModeValue('white', 'gray.500');
-	const handleChange = e => {
-		onTaskChange( { taskStatus: e.target.value } );
-	};
+	const [state, dispatch] = useForm();
+	
 
 	return (
 		<FormControl id="task-status">
@@ -24,8 +24,8 @@ export default function TaskStatus( {label, value, onTaskChange = () => {} }) {
 				<Select 
 					bg={bg} 
 					placeholder='Task Status' 
-					value={ value }
-					onChange={ handleChange }
+					value={state.status}
+					onChange={(e) => dispatch({type: 'status', data: e.target.value})}
 				>
 					{ options.length > 0 &&
 						options.map( option => (

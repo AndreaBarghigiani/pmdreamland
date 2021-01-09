@@ -7,19 +7,22 @@ import {
 	useColorModeValue,
 } from '@chakra-ui/react';
 
-export default function TaskDescription( { label, value, onTaskChange = () => {} } ) {
+import { useForm } from '../../lib/FormContext';
+
+export default function TaskDescription( { label } ) {
 	const bg = useColorModeValue('white', 'gray.500');
-	const handleChange = e => {
-		onTaskChange( { taskDescription: e.target.value } );
-	};
+	const negBg = useColorModeValue('gray.500', 'white');
+	const [state, dispatch] = useForm();
+	
 	return (
 		<FormControl>
 			{ label && <FormLabel>{ label }</FormLabel> }
 			<Textarea
 				bg={bg}
 				placeholder='Task description'
-				value={ value }
-				onChange={ handleChange }
+				value={state.description}
+				onChange={(e) => dispatch({type: 'description', data: e.target.value})}
+				_placeholder={{ color: negBg }}
 			/>
 		</FormControl>
 	);

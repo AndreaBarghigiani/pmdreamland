@@ -9,16 +9,13 @@ import {
 } from '@chakra-ui/react';
 
 import { LinkIcon } from '@chakra-ui/icons';
+import { useForm } from '../../lib/FormContext';
 
 export default function TaskURL( {
 	withIcon = true,
-	value,
-	onTaskChange = () => {},
 } ) {
 	const bg = useColorModeValue('white', 'gray.500');
-	const handleChange = e => {
-		onTaskChange( { taskURL: e.target.value } );
-	};
+	const [state, dispatch] = useForm();
 
 	return (
 		<FormControl id="task-url">
@@ -30,8 +27,8 @@ export default function TaskURL( {
 					bg={bg}
 					placeholder="Task URL"
 					type="url"
-					value={ value }
-					onChange={ handleChange }
+					value={ state.url }
+					onChange={(e) => dispatch({type: 'url', data: e.target.value})}
 				/>
 			</InputGroup>
 		</FormControl>

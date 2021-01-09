@@ -9,16 +9,14 @@ import {
 } from '@chakra-ui/react';
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { useForm } from '../../lib/FormContext';
 
 export default function TaskProject( {
 	withIcon = true,
-	value,
-	onTaskChange = () => {},
 } ) {
 	const bg = useColorModeValue('white', 'gray.500');
-	const handleChange = e => {
-		onTaskChange( { taskProject: e.target.value } );
-	};
+	const negBg = useColorModeValue('gray.500', 'white');
+	const [state, dispatch] = useForm();
 
 	return (
 		<FormControl id="task-project">
@@ -29,8 +27,10 @@ export default function TaskProject( {
 				<Input
 					bg={bg}
 					placeholder="Task Project"
-					value={ value }
-					onChange={ handleChange }
+					name='project'
+					value={state.project}
+					onChange={(e) => dispatch({type: 'project', data: e.target.value})}
+					_placeholder={{ color: negBg }}
 				/>
 			</InputGroup>
 		</FormControl>

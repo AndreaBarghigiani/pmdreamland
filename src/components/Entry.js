@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import * as React from 'react';
 import {
-	Button,
-	HStack,
 	Stack,
 	Heading,
 	Box,
@@ -18,56 +15,29 @@ import TaskProject from './CreateTask/TaskProject';
 import TaskDescription from './CreateTask/TaskDescription';
 import TaskStatus from './CreateTask/TaskStatus';
 import TaskProgress from './CreateTask/TaskProgress';
+import TaskSubmit from './CreateTask/TaskSubmit';
 
 import { SingleTask } from './SingleTask';
-import { useStore, addTask } from '../lib/Store';
+import { useStore } from '../lib/Store';
+import { FormProvider } from '../lib/FormContext';
 
-const Entry = ({addTask}) => {
+const Entry = ({ showForm }) => {
 	const tasks = useStore();
 
 	// Themes
 	const boxBg = useColorModeValue('gray.50', 'gray.700');
 	const boxBorderColor = useColorModeValue('blue.400', 'blue.100');
 
-	// States
-	const initialFormContent = {
-		taskName: '',
-		taskURL: '',
-		taskProject: '',
-		taskDescription: '',
-		taskStatus: 'tomorrow',
-		taskProgress: 30,
-	};
-	
-	const [formContent, setFormContent] = React.useState(initialFormContent);
-	const [tasksList, setTasksList] = React.useState([]);
-	const [isFormShown, setIsFormShown] = React.useState(addTask);
+	const [isFormShown, setIsFormShown] = React.useState(showForm);
 
-	React.useEffect( () => {
-		setIsFormShown(addTask)
-	}, [addTask])
-
-	const addNewEntry = e => {
-		e.preventDefault();
-		addToTaskList(formContent);
-		setFormContent(initialFormContent);
-	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		addToTaskList(formContent);
-		setIsFormShown(false);
-	};
-
-	const handleTaskValues = value => {
-		setFormContent(prevState => ({ ...prevState, ...value }));
-	};
-
-	const addToTaskList = task => setTasksList(prevState => [...prevState, task]);
+	// Keep here because add task form can be handled by submit as well
+	React.useEffect(() => {
+		setIsFormShown(showForm);
+	}, [showForm]);
 
 	return (
 		<>
-			<Collapse in={addTask}>
+			<Collapse in={isFormShown}>
 				<Box
 					bg={boxBg}
 					border="2px"
@@ -78,46 +48,17 @@ const Entry = ({addTask}) => {
 					maxW="xl"
 					width="100vw"
 				>
-					<form onSubmit={handleSubmit}>
+					<FormProvider>
 						<Stack spacing={3}>
-							<TaskName
-								value={formContent.taskName}
-								onTaskChange={handleTaskValues}
-							/>
-							<TaskURL
-								value={formContent.taskURL}
-								onTaskChange={handleTaskValues}
-							/>
-							<TaskProject
-								value={formContent.taskProject}
-								onTaskChange={handleTaskValues}
-							/>
-							<TaskDescription
-								value={formContent.taskDescription}
-								onTaskChange={handleTaskValues}
-							/>
-							<TaskStatus
-								value={formContent.taskStatus}
-								onTaskChange={handleTaskValues}
-							/>
-							<TaskProgress
-								value={formContent.taskProgress}
-								onTaskChange={handleTaskValues}
-							/>
-							<HStack spacing={8} justify="space-between" align="center">
-								<Button type="submit" colorScheme="blue">
-									Save
-								</Button>
-								<Button
-									onClick={addNewEntry}
-									variant="ghost"
-									colorScheme="blue"
-								>
-									...or add new task
-								</Button>
-							</HStack>
+							<TaskName />
+							<TaskURL />
+							<TaskProject />
+							<TaskDescription />
+							<TaskStatus />
+							<TaskProgress />
+							<TaskSubmit />
 						</Stack>
-					</form>
+					</FormProvider>
 				</Box>
 			</Collapse>
 			{tasks.length > 0 ? (
