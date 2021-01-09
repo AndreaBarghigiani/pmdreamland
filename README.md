@@ -10,4 +10,5 @@ This project has two main part that will benefit teams:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 UI build with [Chakra UI](https://chakra-ui.com)
+Database and authentication from [Supabase](https://supabase.io/)
 
