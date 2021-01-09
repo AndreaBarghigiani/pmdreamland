@@ -1,23 +1,30 @@
 import React from 'react';
-import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import {
+	Box,
+	VStack,
+	Grid,
+	Heading
+} from '@chakra-ui/react';
+
+import Header from './layout/Header'
 import Entry from './components/Entry';
-// import { useStore } from './Store';
+import { useUser } from './lib/UserContext'
 
 function App() {
-	// const tasks = useStore();
-	// console.log('tasks', tasks);
+	const [user] = useUser(); 
+	const [ addTask, setAddTask ] = React.useState(false)
 	return (
-		<ChakraProvider theme={theme}>
-			<Box textAlign="center" fontSize="xl">
-				<Grid minH="100vh" p={3}>
-					<ColorModeSwitcher justifySelf="flex-end" />
+		<Box textAlign="center" fontSize="xl">
+			<Grid p={3}>
+				<Header addTask={ setAddTask } />
+				{ user 
+				? (
 					<VStack spacing={8}>
-						<Entry />
+						<Entry addTask={addTask} />
 					</VStack>
-				</Grid>
-			</Box>
-		</ChakraProvider>
+				) : <Heading>You must be logged in</Heading> }
+			</Grid>
+		</Box>
 	);
 }
 
