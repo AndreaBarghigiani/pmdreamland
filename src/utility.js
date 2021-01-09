@@ -1,4 +1,11 @@
-import { taskStatuses } from './sampleData'
+export const taskStatuses = [
+	{ value: 'tomorrow', text: 'Tomorrow' },
+	{ value: 'two-three-days', text: 'Two or three days' },
+	{ value: 'less-week', text: 'Less than a week' },
+	{ value: 'one-week', text: 'One week' },
+	{ value: 'two-weeks', text: 'Two weeks' },
+	{ value: 'more', text: 'More...' },
+];
 
 export function getStatusText(value, statuses = taskStatuses){
 	return statuses.filter( item => item.value === value )[0].text;

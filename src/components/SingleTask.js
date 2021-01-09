@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import { getStatusText, getStatusColor } from '../utility';
+
 export function SingleTask({ view = 'user', task }) {
 	const { progress, name, description, status, url } = task;
 	const statusText = getStatusText(status);
@@ -54,7 +55,7 @@ export function SingleTask({ view = 'user', task }) {
 						{name}
 					</Heading>
 					<Text fontSize="14px" isTruncated>
-						{description}{' '}
+						{description}
 					</Text>
 				</Box>
 			</HStack>

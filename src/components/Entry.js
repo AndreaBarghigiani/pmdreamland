@@ -20,11 +20,11 @@ import TaskStatus from './CreateTask/TaskStatus';
 import TaskProgress from './CreateTask/TaskProgress';
 
 import { SingleTask } from './SingleTask';
+import { useStore, addTask } from '../lib/Store';
 
-import { useStore } from '../Store';
-
-const Entry = () => {
+const Entry = ({addTask}) => {
 	const tasks = useStore();
+
 	// Themes
 	const boxBg = useColorModeValue('gray.50', 'gray.700');
 	const boxBorderColor = useColorModeValue('blue.400', 'blue.100');
@@ -38,19 +38,22 @@ const Entry = () => {
 		taskStatus: 'tomorrow',
 		taskProgress: 30,
 	};
+	
 	const [formContent, setFormContent] = React.useState(initialFormContent);
 	const [tasksList, setTasksList] = React.useState([]);
-	const [isFormShown, setIsFormShown] = React.useState(true);
+	const [isFormShown, setIsFormShown] = React.useState(addTask);
+
+	React.useEffect( () => {
+		setIsFormShown(addTask)
+	}, [addTask])
 
 	const addNewEntry = e => {
-		console.log('add entry');
 		e.preventDefault();
 		addToTaskList(formContent);
 		setFormContent(initialFormContent);
 	};
 
 	const handleSubmit = e => {
-		console.log('handling submit');
 		e.preventDefault();
 		addToTaskList(formContent);
 		setIsFormShown(false);
@@ -64,7 +67,7 @@ const Entry = () => {
 
 	return (
 		<>
-			<Collapse in={isFormShown}>
+			<Collapse in={addTask}>
 				<Box
 					bg={boxBg}
 					border="2px"
@@ -124,7 +127,7 @@ const Entry = () => {
 					</Heading>
 					<Stack spacing={4}>
 						{tasks.map(task => (
-							<SingleTask task={task} />
+							<SingleTask key={task.id} task={task} />
 						))}
 					</Stack>
 				</>

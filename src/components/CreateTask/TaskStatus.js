@@ -5,10 +5,10 @@ import {
 	FormLabel,
 	Select,
 	useColorModeValue,
-	// useBreakpoint,
 } from '@chakra-ui/react';
 
-import { taskStatuses } from '../../sampleData'
+import { taskStatuses } from '../../utility';
+
 export default function TaskStatus( {label, value, onTaskChange = () => {} }) {
 	const options = taskStatuses;
 
