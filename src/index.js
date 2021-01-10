@@ -1,10 +1,22 @@
-import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
+import { ColorModeScript } from '@chakra-ui/react';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import { ChakraProvider, theme } from '@chakra-ui/react'
+
+// Pages
+import App from './App';
+import UserProfile from './pages/UserProfile'
+import Header from './layout/Header'
+
+// Providers
+import { ChakraProvider, theme, Grid } from '@chakra-ui/react'
 import { UserProvider } from './lib/UserContext';
 
 ReactDOM.render(
@@ -12,7 +24,22 @@ ReactDOM.render(
     <ColorModeScript />
 	<ChakraProvider theme={theme}>
 		<UserProvider>
-			<App />
+			<Grid p={3}>
+				<Router>
+					<Header />
+					<Switch>
+						<Route exact path='/'>
+							<App />
+						</Route>
+						<Route path='/profile'>
+							<UserProfile />
+						</Route>
+						{/* <Route path='/tasks'>
+							<UserProfile />
+						</Route> */}
+					</Switch>
+				</Router>
+			</Grid>
 		</UserProvider>
 	</ChakraProvider>
   </StrictMode>,
