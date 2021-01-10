@@ -4,15 +4,21 @@ import { Button, HStack } from '@chakra-ui/react';
 import { addTask } from '../../lib/Store';
 import { useForm } from '../../lib/FormContext';
 
-export default function TaskSubmit() {
-	const [formContent] = useForm();
-	console.log('formContent', formContent);
+export default function TaskSubmit({showForm}) {
+	const [formContent, dispatch ] = useForm();
+
+	const handleSubmit = (e) => {
+		console.log(e.target)
+		addTask(formContent);
+		showForm(false);
+	}
+
 	return (
 		<HStack spacing={8} justify="space-between" align="center">
 			<Button
 				type="submit"
 				colorScheme="blue"
-				onClick={() => addTask(formContent)}
+				onClick={handleSubmit}
 			>
 				Save
 			</Button>

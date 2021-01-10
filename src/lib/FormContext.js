@@ -50,6 +50,8 @@ function formReducer(state, action) {
 				...state,
 				user_id: action.data,
 			};
+		case 'empty':
+			return initialFormContent;
 		default:
 			throw new Error('no action passed');
 	}

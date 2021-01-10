@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react';
 
 // internal dep
-// import TaskFormControl from './TaskFormControl';
 import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
@@ -21,19 +20,14 @@ import { SingleTask } from './SingleTask';
 import { useStore } from '../lib/Store';
 import { FormProvider } from '../lib/FormContext';
 
-const Entry = ({ showForm }) => {
+const Entry = () => {
 	const tasks = useStore();
 
 	// Themes
 	const boxBg = useColorModeValue('gray.50', 'gray.700');
 	const boxBorderColor = useColorModeValue('blue.400', 'blue.100');
 
-	const [isFormShown, setIsFormShown] = React.useState(showForm);
-
-	// Keep here because add task form can be handled by submit as well
-	React.useEffect(() => {
-		setIsFormShown(showForm);
-	}, [showForm]);
+	const [isFormShown, setIsFormShown] = React.useState(false);
 
 	return (
 		<>
@@ -56,7 +50,7 @@ const Entry = ({ showForm }) => {
 							<TaskDescription />
 							<TaskStatus />
 							<TaskProgress />
-							<TaskSubmit />
+							<TaskSubmit showForm={setIsFormShown} />
 						</Stack>
 					</FormProvider>
 				</Box>
