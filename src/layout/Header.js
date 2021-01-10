@@ -3,11 +3,11 @@ import { Flex, Spacer } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import Auth from '../components/Auth';
 
-export default function Header({ addTask }) {
+export default function Header() {
 	return (
 		<Flex align="center">
 			<Spacer />
-			<Auth addTask={addTask} />
+			<Auth />
 			<ColorModeSwitcher justifySelf="flex-end" />
 		</Flex>
 	);

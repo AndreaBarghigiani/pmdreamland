@@ -1,10 +1,18 @@
 import * as React from 'react';
-import { Button } from '@chakra-ui/react';
+import { 
+	Avatar,
+	Button,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom'
 
 import { useUser } from '../lib/UserContext';
 import { supabase, addUser } from '../lib/Store';
 
-const Auth = ({ addTask }) => {
+const Auth = () => {
 	const [user, setUser] = useUser();
 
 	// Check if we have a user logged in
@@ -45,19 +53,36 @@ const Auth = ({ addTask }) => {
 	return (
 		<>
 			{user ? (
-				<Button colorScheme="green" onClick={() => addTask(true)}>
-					Add task
+				<Menu>
+					<MenuButton 
+						as={Avatar} 
+						bg='green.400' 
+						size='sm'
+						cursor='pointer'
+						_hover={{ bg: 'green.500'}} 
+					/>
+					<MenuList>
+						<MenuItem>
+							<Link to='/profile'>
+								Preferences
+							</Link>
+						</MenuItem>
+						<MenuItem>
+							Logout
+						</MenuItem>
+					</MenuList>
+				</Menu>
+			) : (
+				<Button
+					name={nameButton}
+					type="submit"
+					onClick={handleLogin}
+					colorScheme={colorButton}
+					ml="3"
+				>
+					{textButton}
 				</Button>
-			) : null}
-			<Button
-				name={nameButton}
-				type="submit"
-				onClick={handleLogin}
-				colorScheme={colorButton}
-				ml="3"
-			>
-				{textButton}
-			</Button>
+			)}
 		</>
 	);
 };
