@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom'
 
 import { useUser } from '../lib/UserContext';
-import { supabase, addUser } from '../lib/Store';
+import { supabase, addUser, getPublicUser } from '../lib/Store';
 
 const Auth = () => {
 	const [user, setUser] = useUser();
@@ -19,9 +19,9 @@ const Auth = () => {
 	React.useEffect(() => {
 		const { data: authListener } = supabase.auth.onAuthStateChange(
 			async (event, session) => {
-				setUser(session?.user ?? null);
 				if (session?.user) {
-					addUser(session?.user);
+					const publicUser = await getPublicUser(session?.user);
+					setUser(publicUser);
 				}
 			}
 		);
@@ -49,29 +49,28 @@ const Auth = () => {
 	const colorButton = user ? 'red' : 'green';
 	const textButton = user ? 'Logout' : 'Login';
 	const nameButton = user ? 'logout' : 'login';
-
+	
 	return (
 		<>
 			{user ? (
-				<Menu>
-					<MenuButton 
-						as={Avatar} 
-						bg='green.400' 
-						size='sm'
-						cursor='pointer'
-						_hover={{ bg: 'green.500'}} 
-					/>
-					<MenuList>
-						<MenuItem>
-							<Link to='/profile'>
-								Preferences
-							</Link>
-						</MenuItem>
-						<MenuItem>
-							Logout
-						</MenuItem>
-					</MenuList>
-				</Menu>
+				<>
+					<Link to="/">Home</Link>
+					<Menu>
+						<MenuButton
+							as={Avatar}
+							bg="green.400"
+							size="sm"
+							cursor="pointer"
+							_hover={{ bg: 'green.500' }}
+						/>
+						<MenuList>
+							<MenuItem>
+								<Link to="/profile">Profile</Link>
+							</MenuItem>
+							<MenuItem>Logout</MenuItem>
+						</MenuList>
+					</Menu>
+				</>
 			) : (
 				<Button
 					name={nameButton}

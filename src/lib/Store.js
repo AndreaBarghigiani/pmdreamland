@@ -53,32 +53,45 @@ export const addTask = async task => {
 };
 
 /**
- * Add a new user in database.
+ * Add a new user in database. Already check if user exists with getPublicUser
  * @returns {Object} The tasks list
  */
 export const addUser = async user => {
 	try {
-		// Does the user exists?
-		let { data, error } = await supabase
+		console.log(user);
+		const { insData, insError } = await supabase
 			.from('users')
-			.select('id')
-			.eq('id', user.id);
+			.insert([{ id: user.id, email: user.email }]);
 
-		// If user don't exist lets add
-		if (data.length === 0) {
-			console.log(user);
-			const { insData, insError } = await supabase
-				.from('users')
-				.insert([{ id: user.id, email: user.email }]);
-
-			console.log('insError', insError);
-			console.log('insData', insData);
-			if (insError) {
-				throw new Error(insError);
-			}
-			return insData;
+		console.log('insError', insError);
+		console.log('insData', insData);
+		if (insError) {
+			throw new Error(insError);
 		}
+		return insData;
 	} catch (insError) {
 		console.log('insError', insError);
+	}
+};
+
+/**
+ * Get the public part of the user that I care about for my app.
+ * @param {Object} user The user information that comes from the login 
+ */
+export const getPublicUser = async user => {
+	try {
+		const { data, error } = await supabase
+			.from('users')
+			.select('*')
+			.eq('id', user.id)
+			.single();
+
+		if (data.length === 0) {
+			return addUser(user);
+		}
+
+		return data;
+	} catch (error) {
+		console.log('error in getPublicUser', error);
 	}
 };
