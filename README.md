@@ -12,3 +12,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 UI build with [Chakra UI](https://chakra-ui.com)
 Database and authentication from [Supabase](https://supabase.io/)
 
+Taken inspiration from the [Project-365](https://github.com/MattCSmith/Project-365) I've started journaling in [/notes](/notes).
