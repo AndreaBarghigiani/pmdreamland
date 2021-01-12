@@ -1,18 +1,20 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useUser } from '../lib/UserContext';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={rest => {
-        if (localStorage.getItem('token')) {
-          return <Component {...rest} />;
-        } else {
-          return <Redirect to="/" />;
-        }
-      }}
-    />
+	const [user] = useUser();
+	return (
+		<Route
+			{...rest}
+			render={rest => {
+				if (user) {
+					return <Component {...rest} />;
+				} else {
+					return <Redirect to="/" />;
+				}
+			}}
+		/>
   );
 };
 
