@@ -21,9 +21,8 @@ export default function TaskName( {
 	const [users] = useUser();
 
 	React.useEffect(() => {
-		console.log('effect run')
-		dispatch({type: 'user_id', data: users.id})
-	}, [users, dispatch] )
+		dispatch({ type: 'user_id', data: users.id });
+	}, [users, dispatch]);
 	
 	return (
 		<FormControl id="task-name">
