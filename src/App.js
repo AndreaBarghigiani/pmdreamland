@@ -17,9 +17,9 @@ function App() {
 							Go to your task
 						</Button>
 						{user.role === 'projectmanager' ?
-						<Button as={Link} to="/dashboard" colorScheme='blue'>
-							Go to the dashboard
-						</Button> : null
+							<Button as={Link} to="/dashboard" colorScheme='blue'>
+								Go to the dashboard
+							</Button> : null
 						}
 					</HStack>
 				</VStack>

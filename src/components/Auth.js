@@ -30,9 +30,15 @@ const Auth = () => {
 						/>
 						<MenuList>
 							<MenuItem>
-								<Link to="/profile">Profile</Link>
+								<Link to='/profile'>
+									Profile
+								</Link>
 							</MenuItem>
-							<MenuItem as="Button" name="logout" onClick={() => supabase.auth.signOut()}>
+							<MenuItem
+								as="Button"
+								name="logout"
+								onClick={() => supabase.auth.signOut()}
+							>
 								Logout
 							</MenuItem>
 						</MenuList>
@@ -41,9 +47,9 @@ const Auth = () => {
 			) : (
 				<Button
 					onClick={() => {
-						supabase.auth.signIn({ provider: 'bitbucket' })
-					} }
-					colorScheme='green'
+						supabase.auth.signIn({ provider: 'bitbucket' });
+					}}
+					colorScheme="green"
 				>
 					Login
 				</Button>
