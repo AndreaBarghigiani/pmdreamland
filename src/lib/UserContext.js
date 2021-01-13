@@ -1,10 +1,35 @@
 import * as React from 'react';
-
+import { supabase, getPublicUser } from './Store';
 const UserContext = React.createContext();
 
 export function UserProvider(props) {
+	const [session, setSession] = React.useState(null);
 	const [user, setUser] = React.useState(null);
-	const value = [user, setUser];
+
+	// Check if we have a user logged in
+	React.useEffect(() => {
+		const session = supabase.auth.session();
+		setSession(session);
+		setUser(session?.user ?? null);
+		const { data: authListener } = supabase.auth.onAuthStateChange(
+			async (event, session) => {
+				if (session?.user) {
+					const publicUser = await getPublicUser(session?.user);
+					setSession(session);
+					setUser(publicUser);
+				}
+
+				// @todo: implement redirect on logout
+			}
+		);
+
+		// Cleanup function
+		return () => {
+			authListener.unsubscribe();
+		};
+	}, [setUser]);
+
+	const value = [session, user];
 
 	return <UserContext.Provider value={value} {...props} />;
 }
