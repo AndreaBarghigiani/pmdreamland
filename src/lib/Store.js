@@ -11,12 +11,12 @@ export const useStore = props => {
 
 	// Fetching tasks
 	React.useEffect(() => {
-		fetchTasks().then(res => {
+		fetchAllTasks().then(res => {
 			setTasks(res);
 		});
 	}, []);
 
-	return tasks;
+	return [tasks, setTasks];
 };
 
 /**
@@ -24,9 +24,25 @@ export const useStore = props => {
  * TODO: must add relation with user in future.
  * @returns {Object} The tasks list
  */
-export const fetchTasks = async () => {
+export const fetchAllTasks = async () => {
 	try {
 		let { data, error } = await supabase.from('tasks').select();
+		if (error) {
+			throw new Error(error);
+		}
+		return data;
+	} catch (error) {
+		console.log('error', error);
+	}
+};
+
+export const fetchUserTasks = async userId => {
+	try {
+		let { data, error } = await supabase
+			.from('tasks')
+			.select('*')
+			.eq('user_id', userId)
+			.neq('progress', 100);
 		if (error) {
 			throw new Error(error);
 		}
@@ -43,6 +59,25 @@ export const fetchTasks = async () => {
 export const addTask = async task => {
 	try {
 		let { data, error } = await supabase.from('tasks').insert([task]);
+		if (error) {
+			throw new Error(error);
+		}
+		return data;
+	} catch (error) {
+		console.log('error', error);
+	}
+};
+
+/**
+ * Will add a new task the list saved in database.
+ * @returns {Object} The tasks list
+ */
+export const updateTask = async task => {
+	try {
+		let { data, error } = await supabase
+			.from('tasks')
+			.update([task])
+			.eq('id', task.id);
 		if (error) {
 			throw new Error(error);
 		}
