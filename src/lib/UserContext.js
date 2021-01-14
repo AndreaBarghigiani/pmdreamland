@@ -10,12 +10,19 @@ export function UserProvider(props) {
 	// Check if we have a user logged in
 	React.useEffect(() => {
 		const session = supabase.auth.session();
+		console.log('session', session);
 		setSession(session);
 		setUser(session?.user ?? null);
+		setTimeout(async () => {
+			const publicUser = await getPublicUser(session.user);
+			setPublicUser(publicUser);
+		}, 100);
 		const { data: authListener } = supabase.auth.onAuthStateChange(
 			async (event, session) => {
 				if (session?.user) {
-					const publicUser = await getPublicUser(session?.user);
+					const publicUser = await getPublicUser(session.user);
+					setSession(session);
+					setUser(session.user);
 					setPublicUser(publicUser);
 				}
 
