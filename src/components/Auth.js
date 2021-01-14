@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { 
+import {
 	Avatar,
 	Button,
 	Menu,
 	MenuButton,
 	MenuList,
-	MenuItem
+	MenuItem,
+	IconButton,
+	Tooltip
 } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom'
 
 import { useUser } from '../lib/UserContext';
@@ -18,8 +21,7 @@ const Auth = () => {
 	return (
 		<>
 			{user ? (
-				<>
-					<Link to="/">Home</Link>
+				<>	
 					<Menu>
 						<MenuButton
 							as={Avatar}
@@ -30,9 +32,7 @@ const Auth = () => {
 						/>
 						<MenuList>
 							<MenuItem>
-								<Link to='/profile'>
-									Profile
-								</Link>
+								<Link to="/profile">Profile</Link>
 							</MenuItem>
 							<MenuItem
 								as="Button"

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
 	Stack,
-	Heading,
-	Box,
-	Collapse,
-	useColorModeValue,
 } from '@chakra-ui/react';
 
 // internal dep
@@ -18,41 +21,32 @@ import TaskSubmit from './CreateTask/TaskSubmit';
 
 import { FormProvider } from '../lib/FormContext';
 
-const Entry = () => {
-	// Themes
-	const boxBg = useColorModeValue('gray.50', 'gray.700');
-	const boxBorderColor = useColorModeValue('blue.400', 'blue.100');
-
-	const [isFormShown, setIsFormShown] = React.useState(false);
-
+const TaskModal = ({ isOpen, onClose, task = null }) => {
 	return (
-		<>
-			<Collapse in={isFormShown}>
-				<Box
-					bg={boxBg}
-					border="2px"
-					borderColor={boxBorderColor}
-					p={10}
-					borderRadius="8px"
-					boxShadow="base"
-					maxW="xl"
-					width="100vw"
-				>
-					<FormProvider>
+		<Modal isOpen={isOpen} onClose={onClose}>
+			<ModalOverlay />
+			<ModalContent>
+				<FormProvider>
+					<ModalHeader>{task ? 'Edit' : 'Add'} Task</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
 						<Stack spacing={3}>
-							<TaskName />
+							<TaskName fill={task} />
 							<TaskURL />
 							<TaskProject />
 							<TaskDescription />
 							<TaskStatus />
 							<TaskProgress />
-							<TaskSubmit showForm={setIsFormShown} />
 						</Stack>
-					</FormProvider>
-				</Box>
-			</Collapse>
-		</>
+					</ModalBody>
+
+					<ModalFooter>
+						<TaskSubmit onClose={onClose} fill={task} />
+					</ModalFooter>
+				</FormProvider>
+			</ModalContent>
+		</Modal>
 	);
 };
 
-export default Entry;
+export default TaskModal;

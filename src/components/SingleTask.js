@@ -13,20 +13,20 @@ import {
 
 import { getStatusText, getStatusColor } from '../utility';
 
-export function SingleTask({ view = 'user', task }) {
+export default function SingleTask({ view = 'user', task, openModal }) {
 	const { progress, name, description, status, url } = task;
 	const statusText = getStatusText(status);
 	const statusColor = getStatusColor(status);
 
 	return (
-		<Link
-			href={url}
+		<Box
 			bg="gray.50"
 			p={5}
 			borderRadius="8px"
 			boxShadow="base"
 			maxW="xl"
 			textAlign="left"
+			onClick={ () => openModal(task)}
 			width="100vw"
 			_hover={{
 				bgColor: 'gray.100',
@@ -59,6 +59,6 @@ export function SingleTask({ view = 'user', task }) {
 					</Text>
 				</Box>
 			</HStack>
-		</Link>
+		</Box>
 	);
 }

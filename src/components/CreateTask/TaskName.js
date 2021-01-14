@@ -12,9 +12,7 @@ import { CheckIcon } from '@chakra-ui/icons';
 import { useForm } from '../../lib/FormContext';
 import { useUser } from '../../lib/UserContext';
 
-export default function TaskName( {
-	withIcon = true,
-} ) {
+export default function TaskName({ withIcon = true, fill }) {
 	const bg = useColorModeValue('white', 'gray.500');
 	const negBg = useColorModeValue('gray.500', 'white');
 	const [state, dispatch] = useForm();
@@ -24,6 +22,10 @@ export default function TaskName( {
 		dispatch({ type: 'user_id', data: users.id });
 	}, [users, dispatch]);
 	
+	React.useEffect(()  =>  {
+		dispatch({ type: 'fill', data: fill });
+	}, [fill]);
+
 	return (
 		<FormControl id="task-name">
 			<InputGroup>
@@ -33,7 +35,7 @@ export default function TaskName( {
 					placeholder="Task name"
 					name="name"
 					value={state.name}
-					onChange={(e) => dispatch({type: 'name', data: e.target.value})}
+					onChange={e => dispatch({ type: 'name', data: e.target.value })}
 					_placeholder={{ color: negBg }}
 				/>
 			</InputGroup>

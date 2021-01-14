@@ -52,6 +52,11 @@ function formReducer(state, action) {
 			};
 		case 'empty':
 			return initialFormContent;
+		case 'fill':
+			return {
+				...state,
+				...action.data,
+			};
 		default:
 			throw new Error('no action passed');
 	}
