@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, HStack } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 import { addTask, updateTask } from '../../lib/Store';
 import { useForm } from '../../lib/FormContext';
