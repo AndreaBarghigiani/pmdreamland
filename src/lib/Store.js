@@ -125,6 +125,10 @@ export const getPublicUser = async user => {
 			return addUser(user);
 		}
 
+		if (error) {
+			throw new Error(error);
+		}
+		
 		return data;
 	} catch (error) {
 		console.log('error in getPublicUser', error);

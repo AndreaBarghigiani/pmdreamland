@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Heading, Text, Checkbox, useCheckbox, Button } from '@chakra-ui/react';
+import { Heading, Checkbox, useCheckbox, Button } from '@chakra-ui/react';
 
 export default function UserProfile() {
 	const isCheck = useCheckbox();

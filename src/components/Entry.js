@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-	Stack,
-	Heading,
-	Box,
-	Collapse,
-	useColorModeValue,
-} from '@chakra-ui/react';
+import { Stack, Box, Collapse, useColorModeValue } from '@chakra-ui/react';
 
 // internal dep
 import TaskName from './CreateTask/TaskName';

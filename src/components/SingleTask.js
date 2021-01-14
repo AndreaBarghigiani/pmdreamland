@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {
 	Box,
-	Link,
 	HStack,
 	Heading,
 	CircularProgress,
@@ -14,7 +13,7 @@ import {
 import { getStatusText, getStatusColor } from '../utility';
 
 export default function SingleTask({ view = 'user', task, openModal }) {
-	const { progress, name, description, status, url } = task;
+	const { progress, name, description, status } = task;
 	const statusText = getStatusText(status);
 	const statusColor = getStatusColor(status);
 

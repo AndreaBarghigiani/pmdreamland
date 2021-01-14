@@ -22,7 +22,9 @@ const TasksList = () => {
 	const [user] = useUser();
 
 	// Fetching user tasks
-	React.useEffect(() => fetchUserTasks(user.id).then(res => setTasks(res)), []);
+	React.useEffect(() => fetchUserTasks(user.id).then(res => setTasks(res)), [
+		user.id,
+	]);
 
 	// Opening modal for editing
 	const openEditModal = task => {

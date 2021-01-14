@@ -22,9 +22,9 @@ export default function TaskName({ withIcon = true, fill }) {
 		dispatch({ type: 'user_id', data: users.id });
 	}, [users, dispatch]);
 	
-	React.useEffect(()  =>  {
+	React.useEffect(() => {
 		dispatch({ type: 'fill', data: fill });
-	}, [fill]);
+	}, [fill, dispatch]);
 
 	return (
 		<FormControl id="task-name">
