@@ -13,10 +13,12 @@ export function UserProvider(props) {
 		console.log('session', session);
 		setSession(session);
 		setUser(session?.user ?? null);
-		setTimeout(async () => {
-			const publicUser = await getPublicUser(session.user);
-			setPublicUser(publicUser);
-		}, 100);
+		if (session?.user) {
+			setTimeout(async () => {
+				const publicUser = await getPublicUser(session.user);
+				setPublicUser(publicUser);
+			}, 100);
+		}
 		const { data: authListener } = supabase.auth.onAuthStateChange(
 			async (event, session) => {
 				if (session?.user) {

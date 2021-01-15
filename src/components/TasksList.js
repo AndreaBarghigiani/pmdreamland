@@ -26,8 +26,10 @@ const TasksList = () => {
 		user.id,
 	]);
 
+	// Empty task
+
 	// Opening modal for editing
-	const openEditModal = task => {
+	const openModal = (task = null) => {
 		setTask(task);
 		onOpen();
 	};
@@ -46,14 +48,14 @@ const TasksList = () => {
 								colorScheme="orange"
 								icon={<AddIcon />}
 								isRound
-								onClick={onOpen}
+								onClick={openModal}
 								mr={3}
 								size="xs"
 							/>
 						</Tooltip>
 					</Flex>
 					{tasks.map(task => (
-						<SingleTask key={task.id} task={task} openModal={openEditModal} />
+						<SingleTask key={task.id} task={task} openModal={openModal} />
 					))}
 					<TaskModal isOpen={isOpen} onClose={onClose} task={task} />
 				</Stack>
