@@ -29,9 +29,7 @@ ReactDOM.render(
 								<Route exact path="/">
 									<App />
 								</Route>
-								<PrivateRoute exact path="/tasks">
-									<UserTasks />
-								</PrivateRoute>
+								<PrivateRoute exact path="/tasks" component={UserTasks} />
 								<Route path="/profile">
 									<UserProfile />
 								</Route>

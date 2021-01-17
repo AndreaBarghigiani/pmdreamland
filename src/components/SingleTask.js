@@ -25,11 +25,12 @@ export default function SingleTask({ view = 'user', task, openModal }) {
 			boxShadow="base"
 			maxW="xl"
 			textAlign="left"
-			onClick={ () => openModal(task)}
+			onClick={() => openModal(task)}
 			width="100vw"
 			_hover={{
 				bgColor: 'gray.100',
 				boxShadow: 'none',
+				cursor: 'pointer',
 				textDecoration: 'none',
 			}}
 			isExternal
