@@ -1,3 +1,17 @@
 ### Day 1
 That's not the real day one of the project but is the first day I decided to start documenting this journey. Today I've implemented a basic Route system that allows the user to move simply by visiting some URL (no fancy redirect based on user role at the moment).
 Implemented a basic idea of private routing but still need to improve it to implement redirects in case user is not logged in, this also will protect the app from unfriendly error messages in case some information are missing (watching at you `/tasks`).
+
+### Day 2
+Fixed open modal for editing single task and also improved the login sistem. There is a bug regardint localHost and how goTrue is checking if user is logged in so for the moment I rely on a setTimeout to give time to resolve the bug.
+```js
+if (session?.user) {
+	setTimeout(async () => {
+		const publicUser = await getPublicUser(session.user);
+		setPublicUser(publicUser);
+	}, 100);
+}
+```
+
+### Day 3
+Started to work on a bulk edit solution to allow users to update all the opened tasks in one go. Kinda of complex but right now I started with creating a context just for the editing part that will keep all the tasks in a transformed way, hope this will make easier when we need to update spedific part of the whole set of data.
