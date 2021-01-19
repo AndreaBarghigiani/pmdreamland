@@ -83,7 +83,7 @@ export const updateTask = async task => {
 		}
 		return data;
 	} catch (error) {
-		console.log('error', error);
+		console.log('error in updateTask', error);
 	}
 };
 
@@ -121,7 +121,10 @@ export const getPublicUser = async user => {
 			.eq('id', user.id)
 			.single();
 
+		console.log('this is the data you are working with', data);
+		
 		if (data.length === 0) {
+			console.log('I should add the new user here...');
 			return addUser(user);
 		}
 
