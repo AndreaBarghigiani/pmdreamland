@@ -27,3 +27,13 @@ export function getStatusColor(value, statuses = taskStatuses){
 	}
 
 }
+
+export const isObjectEmpty = obj => {
+	for (const prop in obj) {
+		if (obj.hasOwnProperty(prop)) {
+			return false;
+		}
+	}
+
+	return true;
+};
