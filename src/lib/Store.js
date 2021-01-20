@@ -97,7 +97,7 @@ export const addUser = async user => {
 		console.log(user);
 		const { insData, insError } = await supabase
 			.from('users')
-			.insert([{ id: user.id, email: user.email }]);
+			.insert([{ id: user.id, email: user.email, role: user.role }]);
 
 		if (insError) {
 			throw new Error(insError);
