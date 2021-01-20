@@ -25,16 +25,16 @@ function transformTaskToString(
 ) {
 	const statusText = getStatusText(status);
 	const etaText = getEtaText(eta);
-	const taskString = `
+
+	return `
 *Task ${++index}*
 _Jira Link_: ${url}
 _Title: *${name}*_
 _Notes_: ${description}
-_Progress_: ${progress}
+_Progress_: ${progress}%
 _ETA_: ${etaText}
 _Status_: ${statusText}
 ----------------------------------------`;
-	return taskString;
 }
 
 /**
@@ -65,28 +65,32 @@ const TasksList = () => {
 		user.id,
 	]);
 
-	// Momentarly set tasks, next implementation will use React Query with Optimistic Updates
-	const updateTasks = (updatedTask) => {
-		console.log('updatedTask', updatedTask);
-		const updatedTasks = tasks.map( task => {
-			if(task.id === updatedTask.id ){
+	// Kinda Optimistic Update
+	// Momentarly set tasks, next implementation will use React Query
+	function updateTasks(updatedTask, isNew = false ) {
+		const updatedTasks = tasks.map(task => {
+			if (task.id === updatedTask.id) {
 				task = updatedTask;
 			}
 
 			return task;
-		} );
-		console.log('updatedTasks', updatedTasks);
-		setTasks(updatedTasks)
-	};
+		});
+
+		if(isNew){
+			updatedTasks.push(updatedTask);
+		}
+		
+		setTasks(updatedTasks);
+	}
 
 	// Opening modal for editing
-	const openModal = (e, task = null) => {
+	function openModal(e, task = null) {
 		e.preventDefault();
 		setTask(task);
 		onOpen();
-	};
+	}
 
-	const copyForSlack = () => {
+	function copyForSlack() {
 		let tmpMarkDown = tasks.map((task, i) => transformTaskToString(i, task));
 		copyToClipboard(tmpMarkDown.join(''));
 		toast({
@@ -97,7 +101,7 @@ const TasksList = () => {
 			duration: 5000,
 			isClosable: true,
 		});
-	};
+	}
 
 	return (
 		<>

@@ -10,12 +10,16 @@ export default function TaskSubmit({ onClose, fill = null, updateTasks }) {
 	async function handleSubmit(e) {
 		if (fill) {
 			const updateState = await updateTask(formContent);
-			if( updateState ){
-				updateTasks( updateState[0] );
+			if (updateState) {
+				updateTasks(updateState[0]);
 			}
 			
 		} else {
-			addTask(formContent);
+			const addedTask = await addTask(formContent);
+			console.log('addedTask', addedTask);
+			if (addedTask) {
+				updateTasks(addedTask[0], true);
+			}
 		}
 		dispatch({ type: 'empty' });
 		onClose();
