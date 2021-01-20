@@ -10,7 +10,7 @@ export function UserProvider(props) {
 	// Check if we have a user logged in
 	React.useEffect(() => {
 		const session = supabase.auth.session();
-		console.log('session', session);
+		// console.log('session', session);
 		setSession(session);
 		setUser(session?.user ?? null);
 		if (session?.user) {

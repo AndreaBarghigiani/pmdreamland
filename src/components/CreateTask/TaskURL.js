@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {
 	FormControl,
+	FormLabel,
 	Input,
 	InputGroup,
 	InputLeftElement,
@@ -13,22 +14,22 @@ import { useForm } from '../../lib/FormContext';
 
 export default function TaskURL( {
 	withIcon = true,
+	label
 } ) {
 	const bg = useColorModeValue('white', 'gray.500');
 	const [state, dispatch] = useForm();
 
 	return (
 		<FormControl id="task-url">
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
-				{ withIcon ? (
-					<InputLeftElement children={ <LinkIcon /> } />
-				) : null }
+				{withIcon ? <InputLeftElement children={<LinkIcon />} /> : null}
 				<Input
 					bg={bg}
 					placeholder="Task URL"
 					type="url"
-					value={ state.url }
-					onChange={(e) => dispatch({type: 'url', data: e.target.value})}
+					value={state.url}
+					onChange={e => dispatch({ type: 'url', data: e.target.value })}
 				/>
 			</InputGroup>
 		</FormControl>

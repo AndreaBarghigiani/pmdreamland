@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Flex, Spacer } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+// import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import Auth from '../components/Auth';
 
 export default function Header() {
@@ -8,7 +8,7 @@ export default function Header() {
 		<Flex align="center">
 			<Spacer />
 			<Auth />
-			<ColorModeSwitcher justifySelf="flex-end" />
+			{/* <ColorModeSwitcher justifySelf="flex-end" /> */}
 		</Flex>
 	);
 }

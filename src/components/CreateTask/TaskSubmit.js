@@ -4,12 +4,16 @@ import { Button } from '@chakra-ui/react';
 import { addTask, updateTask } from '../../lib/Store';
 import { useForm } from '../../lib/FormContext';
 
-export default function TaskSubmit({ onClose, fill = null }) {
+export default function TaskSubmit({ onClose, fill = null, updateTasks }) {
 	const [formContent, dispatch] = useForm();
 
-	const handleSubmit = e => {
-		if( fill ){
-			updateTask(formContent);
+	async function handleSubmit(e) {
+		if (fill) {
+			const updateState = await updateTask(formContent);
+			if( updateState ){
+				updateTasks( updateState[0] );
+			}
+			
 		} else {
 			addTask(formContent);
 		}

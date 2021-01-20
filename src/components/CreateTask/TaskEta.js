@@ -7,26 +7,24 @@ import {
 	useColorModeValue,
 } from '@chakra-ui/react';
 
-import { taskStatus } from '../../utility';
+import { taskEta } from '../../utility';
 import { useForm } from '../../lib/FormContext';
 
-export default function TaskStatus({ label }) {
-	const options = taskStatus;
+export default function TaskEta({ label }) {
+	const options = taskEta;
 
 	const bg = useColorModeValue('white', 'gray.500');
 	const [state, dispatch] = useForm();
 
 	return (
 		<FormControl id="task-eta">
-			{label && state.status !== '' ? (
-				<FormLabel fontWeight={600}>{label}</FormLabel>
-			) : null}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			{options.length > 0 ? (
 				<Select
 					bg={bg}
-					placeholder="Task Status"
-					value={state.status}
-					onChange={e => dispatch({ type: 'status', data: e.target.value })}
+					placeholder="Task ETA"
+					value={state.eta}
+					onChange={e => dispatch({ type: 'eta', data: e.target.value })}
 				>
 					{options.length > 0 &&
 						options.map(option => (

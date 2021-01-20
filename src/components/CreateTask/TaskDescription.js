@@ -16,12 +16,12 @@ export default function TaskDescription( { label } ) {
 	
 	return (
 		<FormControl>
-			{ label && <FormLabel>{ label }</FormLabel> }
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<Textarea
 				bg={bg}
-				placeholder='Task description'
+				placeholder="Task description"
 				value={state.description}
-				onChange={(e) => dispatch({type: 'description', data: e.target.value})}
+				onChange={e => dispatch({ type: 'description', data: e.target.value })}
 				_placeholder={{ color: negBg }}
 			/>
 		</FormControl>

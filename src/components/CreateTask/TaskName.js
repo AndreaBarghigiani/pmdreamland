@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {
 	FormControl,
+	FormLabel,
 	Input,
 	InputGroup,
 	InputLeftElement,
@@ -12,7 +13,7 @@ import { CheckIcon } from '@chakra-ui/icons';
 import { useForm } from '../../lib/FormContext';
 import { useUser } from '../../lib/UserContext';
 
-export default function TaskName({ withIcon = true, fill }) {
+export default function TaskName({ withIcon = true, fill, label }) {
 	const bg = useColorModeValue('white', 'gray.500');
 	const negBg = useColorModeValue('gray.500', 'white');
 	const [state, dispatch] = useForm();
@@ -28,6 +29,7 @@ export default function TaskName({ withIcon = true, fill }) {
 
 	return (
 		<FormControl id="task-name">
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
 				{withIcon ? <InputLeftElement children={<CheckIcon />} /> : null}
 				<Input

@@ -55,10 +55,23 @@ const TasksList = () => {
 		user.id,
 	]);
 
-	// Empty task
+	// Momentarly set tasks, next implementation will use React Query with Optimistic Updates
+	const updateTasks = (updatedTask) => {
+		console.log('updatedTask', updatedTask);
+		const updatedTasks = tasks.map( task => {
+			if(task.id === updatedTask.id ){
+				task = updatedTask;
+			}
+
+			return task;
+		} );
+		console.log('updatedTasks', updatedTasks);
+		setTasks(updatedTasks)
+	};
 
 	// Opening modal for editing
-	const openModal = (task = null) => {
+	const openModal = (e, task = null) => {
+		e.preventDefault();
 		setTask(task);
 		onOpen();
 	};
@@ -88,11 +101,11 @@ const TasksList = () => {
 						<Tooltip label="Add task" placement="right">
 							<IconButton
 								aria-label="Add task"
-								colorScheme="orange"
+								colorScheme="green"
 								icon={<AddIcon />}
 								isRound
 								onClick={openModal}
-								mr={3}
+								ml={3}
 								size="xs"
 							/>
 						</Tooltip>
@@ -109,8 +122,12 @@ const TasksList = () => {
 					<TaskModal isOpen={isOpen} onClose={onClose} task={task} />
 				</Stack>
 			) : (
-				<Heading>No tasks found...</Heading>
+				<>
+					<Heading>No tasks found...</Heading>
+					<Button onClick={openModal} colorScheme={'green'}>Add your first task</Button>
+				</>
 			)}
+			<TaskModal isOpen={isOpen} onClose={onClose} task={task} updateTasks={updateTasks} />
 		</>
 	);
 };
