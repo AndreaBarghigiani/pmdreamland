@@ -27,3 +27,4 @@ yarn-error.log*
 .vscode/
 /.env
 /PMDreamLand.code-workspace
+/favicon_io.zip
