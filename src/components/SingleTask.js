@@ -14,7 +14,6 @@ import { getEtaText, getEtaColor } from '../utility';
 
 export default function SingleTask({ view = 'user', task, openModal }) {
 	const { progress, name, description, eta } = task;
-	console.log('eta', eta);
 	const etaText = getEtaText(eta);
 	const etaColor = getEtaColor(eta);
 

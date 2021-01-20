@@ -22,7 +22,7 @@ import TaskSubmit from './CreateTask/TaskSubmit';
 
 import { FormProvider } from '../lib/FormContext';
 
-const TaskModal = ({ isOpen, onClose, task = null }) => {
+const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -43,7 +43,7 @@ const TaskModal = ({ isOpen, onClose, task = null }) => {
 					</ModalBody>
 
 					<ModalFooter>
-						<TaskSubmit onClose={onClose} fill={task} />
+						<TaskSubmit onClose={onClose} fill={task} updateTasks={updateTasks} />
 					</ModalFooter>
 				</FormProvider>
 			</ModalContent>
