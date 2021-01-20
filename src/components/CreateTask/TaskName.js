@@ -29,7 +29,7 @@ export default function TaskName({ withIcon = true, fill, label }) {
 
 	return (
 		<FormControl id="task-name">
-			{ label && state.name !== '' ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
 				{withIcon ? <InputLeftElement children={<CheckIcon />} /> : null}
 				<Input

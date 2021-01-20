@@ -21,17 +21,15 @@ export default function TaskURL( {
 
 	return (
 		<FormControl id="task-url">
-			{ label && state.url !== '' ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
-				{ withIcon ? (
-					<InputLeftElement children={ <LinkIcon /> } />
-				) : null }
+				{withIcon ? <InputLeftElement children={<LinkIcon />} /> : null}
 				<Input
 					bg={bg}
 					placeholder="Task URL"
 					type="url"
-					value={ state.url }
-					onChange={(e) => dispatch({type: 'url', data: e.target.value})}
+					value={state.url}
+					onChange={e => dispatch({ type: 'url', data: e.target.value })}
 				/>
 			</InputGroup>
 		</FormControl>

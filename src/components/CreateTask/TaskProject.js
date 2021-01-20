@@ -22,17 +22,15 @@ export default function TaskProject( {
 
 	return (
 		<FormControl id="task-project">
-			{ label && state.project !== '' ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
-				{ withIcon && (
-					<InputLeftElement children={ <ViewIcon /> } />
-				) }
+				{withIcon && <InputLeftElement children={<ViewIcon />} />}
 				<Input
 					bg={bg}
 					placeholder="Task Project"
-					name='project'
+					name="project"
 					value={state.project}
-					onChange={(e) => dispatch({type: 'project', data: e.target.value})}
+					onChange={e => dispatch({ type: 'project', data: e.target.value })}
 					_placeholder={{ color: negBg }}
 				/>
 			</InputGroup>

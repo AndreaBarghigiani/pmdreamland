@@ -97,7 +97,7 @@ export const addUser = async user => {
 		console.log(user);
 		const { insData, insError } = await supabase
 			.from('users')
-			.insert([{ id: user.id, email: user.email }]);
+			.insert([{ id: user.id, email: user.email, role: user.role }]);
 
 		if (insError) {
 			throw new Error(insError);
@@ -123,6 +123,7 @@ export const getPublicUser = async user => {
 		// Add user only if query didn't return anything
 		if (isObjectEmpty(data)) {
 			console.log('I should add the new user here...');
+			user.role = 'user';
 			return addUser(user);
 		}
 
