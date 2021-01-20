@@ -14,7 +14,7 @@ import {
 import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
-import TaskDescription from './CreateTask/TaskDescription';
+import TaskNotes from './CreateTask/TaskNotes';
 import TaskEta from './CreateTask/TaskEta';
 import TaskStatus from './CreateTask/TaskStatus';
 import TaskProgress from './CreateTask/TaskProgress';
@@ -23,6 +23,7 @@ import TaskSubmit from './CreateTask/TaskSubmit';
 import { FormProvider } from '../lib/FormContext';
 
 const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
+	console.log('isOpen?', isOpen);
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -35,7 +36,7 @@ const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 							<TaskName fill={task} label={'Name'} />
 							<TaskURL label={'URL'} />
 							<TaskProject label={'Project'} />
-							<TaskDescription label={'Description'} />
+							<TaskNotes label={'Notes'} />
 							<TaskEta label={'ETA'} />
 							<TaskStatus label={'Status'} />
 							<TaskProgress label={'Progress'} />
@@ -43,7 +44,11 @@ const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 					</ModalBody>
 
 					<ModalFooter>
-						<TaskSubmit onClose={onClose} fill={task} updateTasks={updateTasks} />
+						<TaskSubmit
+							onClose={onClose}
+							fill={task}
+							updateTasks={updateTasks}
+						/>
 					</ModalFooter>
 				</FormProvider>
 			</ModalContent>
