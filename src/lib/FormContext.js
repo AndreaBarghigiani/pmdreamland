@@ -8,7 +8,7 @@ const initialFormContent = {
 	url: '',
 	project: '',
 	description: '',
-	status: 'tomorrow',
+	eta: 'tomorrow',
 	progress: 30,
 	user_id: '',
 };
@@ -35,6 +35,11 @@ function formReducer(state, action) {
 				...state,
 				description: action.data,
 			};
+		case 'eta':
+			return {
+				...state,
+				eta: action.data,
+			};
 		case 'status':
 			return {
 				...state,
@@ -58,7 +63,7 @@ function formReducer(state, action) {
 				...action.data,
 			};
 		default:
-			throw new Error('no action passed');
+			throw new Error(`You can not use the action ${action.type}`);
 	}
 }
 
