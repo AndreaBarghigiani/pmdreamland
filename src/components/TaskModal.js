@@ -15,7 +15,7 @@ import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
 import TaskDescription from './CreateTask/TaskDescription';
-import TaskStatus from './CreateTask/TaskStatus';
+import TaskEta from './CreateTask/TaskEta';
 import TaskProgress from './CreateTask/TaskProgress';
 import TaskSubmit from './CreateTask/TaskSubmit';
 
@@ -31,12 +31,13 @@ const TaskModal = ({ isOpen, onClose, task = null }) => {
 					<ModalCloseButton />
 					<ModalBody>
 						<Stack spacing={3}>
-							<TaskName fill={task} />
-							<TaskURL />
-							<TaskProject />
-							<TaskDescription />
-							<TaskStatus />
-							<TaskProgress />
+							<TaskName fill={task} label={'Name'} />
+							<TaskURL label={'URL'} />
+							<TaskProject label={'Project'} />
+							<TaskDescription label={'Description'} />
+							<TaskEta label={'ETA'} />
+							{/* <TaskStatus label={'Status'} /> */}
+							<TaskProgress label={'Progress'} />
 						</Stack>
 					</ModalBody>
 

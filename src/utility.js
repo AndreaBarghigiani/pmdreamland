@@ -1,4 +1,4 @@
-export const taskStatuses = [
+export const taskEta = [
 	{ value: 'tomorrow', text: 'Tomorrow' },
 	{ value: 'two-three-days', text: 'Two or three days' },
 	{ value: 'less-week', text: 'Less than a week' },
@@ -7,13 +7,15 @@ export const taskStatuses = [
 	{ value: 'more', text: 'More...' },
 ];
 
-export function getStatusText(value, statuses = taskStatuses){
-	return statuses.filter( item => item.value === value )[0].text;
+export function getEtaText(value, etas = taskEta) {
+	console.log('value', value);
+	console.log('etas', etas);
+	return etas.filter(item => item.value === value)[0].text;
 }
 
-export function getStatusColor(value, statuses = taskStatuses){
-	const match = statuses.filter( item => item.value === value );
-	switch(match[0].value){
+export function getEtaColor(value, etas = taskEta) {
+	const match = etas.filter(item => item.value === value);
+	switch (match[0].value) {
 		case 'tomorrow':
 			return 'green';
 		case 'two-three-days':
@@ -25,7 +27,6 @@ export function getStatusColor(value, statuses = taskStatuses){
 		default:
 			return 'red';
 	}
-
 }
 
 export const isObjectEmpty = obj => {

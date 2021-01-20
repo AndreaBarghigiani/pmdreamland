@@ -8,7 +8,7 @@ const initialFormContent = {
 	url: '',
 	project: '',
 	description: '',
-	status: 'tomorrow',
+	eta: 'tomorrow',
 	progress: 30,
 	user_id: '',
 };
@@ -35,10 +35,10 @@ function formReducer(state, action) {
 				...state,
 				description: action.data,
 			};
-		case 'status':
+		case 'eta':
 			return {
 				...state,
-				status: action.data,
+				eta: action.data,
 			};
 		case 'progress':
 			return {
