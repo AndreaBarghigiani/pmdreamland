@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { isObjectEmpty } from '../utility';
 
 export const supabase = createClient(
 	process.env.REACT_APP_SUPABASE_URL,
@@ -98,8 +99,6 @@ export const addUser = async user => {
 			.from('users')
 			.insert([{ id: user.id, email: user.email }]);
 
-		console.log('insError', insError);
-		console.log('insData', insData);
 		if (insError) {
 			throw new Error(insError);
 		}
@@ -121,9 +120,8 @@ export const getPublicUser = async user => {
 			.eq('id', user.id)
 			.single();
 
-		console.log('this is the data you are working with', data);
-		
-		if (data.length === 0) {
+		// Add user only if query didn't return anything
+		if (isObjectEmpty(data)) {
 			console.log('I should add the new user here...');
 			return addUser(user);
 		}
@@ -131,7 +129,7 @@ export const getPublicUser = async user => {
 		if (error) {
 			throw new Error(error);
 		}
-		
+
 		return data;
 	} catch (error) {
 		console.log('error in getPublicUser', error);
