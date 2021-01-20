@@ -6,7 +6,7 @@ import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
 import TaskDescription from './CreateTask/TaskDescription';
-import TaskStatus from './CreateTask/TaskStatus';
+import TaskEta from './CreateTask/TaskEta';
 import TaskProgress from './CreateTask/TaskProgress';
 import TaskSubmit from './CreateTask/TaskSubmit';
 
@@ -38,7 +38,7 @@ const Entry = () => {
 							<TaskURL />
 							<TaskProject />
 							<TaskDescription />
-							<TaskStatus />
+							<TaskEta />
 							<TaskProgress />
 							<TaskSubmit showForm={setIsFormShown} />
 						</Stack>

@@ -14,7 +14,10 @@ if (session?.user) {
 ```
 
 ### Day 3
-Started to work on a bulk edit solution to allow users to update all the opened tasks in one go. Kinda of complex but right now I started with creating a context just for the editing part that will keep all the tasks in a transformed way, hope this will make easier when we need to update spedific part of the whole set of data.
+Started to work on a bulk edit solution to allow users to update all the opened tasks in one go. Kinda of complex but right now I started with creating a context just for the editing part that will keep all the tasks in a transformed way, hope this will make easier when we need to update specific part of the whole set of data.
 
 ### Day 4 
 The UI for the bulk edit is working and I am able to update the local state with the user changes. Now I need to understand how to tell to db to update multiple rows at once.
+
+### Day 5
+Decided to leave for the moment the Bulk edit feature to focus on the "Copy for Slack" one. To create this I have to transform the HTML used for the tasks to create a simpler version that a MarkDown parser can easily pick up. 

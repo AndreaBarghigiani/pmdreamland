@@ -26,13 +26,26 @@ const TasksList = () => {
 		user.id,
 	]);
 
-	// Empty task
+	// Momentarly set tasks, next implementation will use React Query with Optimistic Updates
+	const updateTasks = (updatedTask) => {
+		console.log('updatedTask', updatedTask);
+		const updatedTasks = tasks.map( task => {
+			if(task.id === updatedTask.id ){
+				task = updatedTask;
+			}
+
+			return task;
+		} );
+		console.log('updatedTasks', updatedTasks);
+		setTasks(updatedTasks)
+	};
 
 	// Opening modal for editing
 	const openModal = (task = null) => {
 		setTask(task);
 		onOpen();
 	};
+
 	return (
 		<>
 			{tasks?.length > 0 ? (
@@ -57,7 +70,7 @@ const TasksList = () => {
 					{tasks.map(task => (
 						<SingleTask key={task.id} task={task} openModal={openModal} />
 					))}
-					<TaskModal isOpen={isOpen} onClose={onClose} task={task} />
+					<TaskModal isOpen={isOpen} onClose={onClose} task={task} updateTasks={updateTasks} />
 				</Stack>
 			) : (
 				<Heading>No tasks found...</Heading>

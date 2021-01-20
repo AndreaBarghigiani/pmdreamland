@@ -10,12 +10,12 @@ import {
 	Tag,
 } from '@chakra-ui/react';
 
-import { getStatusText, getStatusColor } from '../utility';
+import { getEtaText, getEtaColor } from '../utility';
 
 export default function SingleTask({ view = 'user', task, openModal }) {
-	const { progress, name, description, status } = task;
-	const statusText = getStatusText(status);
-	const statusColor = getStatusColor(status);
+	const { progress, name, description, eta } = task;
+	const etaText = getEtaText(eta);
+	const etaColor = getEtaColor(eta);
 
 	return (
 		<Box
@@ -35,8 +35,8 @@ export default function SingleTask({ view = 'user', task, openModal }) {
 			}}
 			isExternal
 		>
-			<Tag colorScheme={statusColor} mb={4} size="sm" variant="solid">
-				{statusText}
+			<Tag colorScheme={etaColor} mb={4} size="sm" variant="solid">
+				{etaText}
 			</Tag>
 			<HStack spacing={8}>
 				<Box>

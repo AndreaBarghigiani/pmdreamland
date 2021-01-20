@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
 	FormControl,
+	FormLabel,
 	FormHelperText,
 	Slider,
 	SliderTrack,
@@ -11,14 +12,12 @@ import {
 
 import { useForm } from '../../lib/FormContext';
 
-export default function TaskProgress( { value, onTaskChange = () => {} } ){
+export default function TaskProgress( { label } ){
 	const [state, dispatch] = useForm();
 
 	return (
 		<FormControl id="task-progress">
-			<FormHelperText textAlign="left" mt={0}>
-				Task Progress: <strong>{state.progress}%</strong>
-			</FormHelperText>
+			{ label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<Slider
 				aria-label="task-progress"
 				value={state.progress}
@@ -30,6 +29,9 @@ export default function TaskProgress( { value, onTaskChange = () => {} } ){
 				</SliderTrack>
 				<SliderThumb />
 			</Slider>
+			<FormHelperText textAlign="left" mt={0}>
+				Task Progress: <strong>{state.progress}%</strong>
+			</FormHelperText>
 		</FormControl>
 	);
 }

@@ -2,17 +2,19 @@ import * as React from 'react';
 
 import {
 	FormControl,
+	FormLabel,
 	Input,
 	InputGroup,
 	InputLeftElement,
 	useColorModeValue,
 } from '@chakra-ui/react';
 
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { ViewIcon } from '@chakra-ui/icons';
 import { useForm } from '../../lib/FormContext';
 
 export default function TaskProject( {
 	withIcon = true,
+	label
 } ) {
 	const bg = useColorModeValue('white', 'gray.500');
 	const negBg = useColorModeValue('gray.500', 'white');
@@ -20,9 +22,10 @@ export default function TaskProject( {
 
 	return (
 		<FormControl id="task-project">
+			{ label && state.project !== '' ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<InputGroup>
 				{ withIcon && (
-					<InputLeftElement children={ <ExternalLinkIcon /> } />
+					<InputLeftElement children={ <ViewIcon /> } />
 				) }
 				<Input
 					bg={bg}
