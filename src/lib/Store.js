@@ -123,6 +123,7 @@ export const getPublicUser = async user => {
 		// Add user only if query didn't return anything
 		if (isObjectEmpty(data)) {
 			console.log('I should add the new user here...');
+			user.role = 'user';
 			return addUser(user);
 		}
 
