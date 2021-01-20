@@ -5,7 +5,7 @@ import { Stack, Box, Collapse, useColorModeValue } from '@chakra-ui/react';
 import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
-import TaskDescription from './CreateTask/TaskDescription';
+import TaskNotes from './CreateTask/TaskNotes';
 import TaskEta from './CreateTask/TaskEta';
 import TaskProgress from './CreateTask/TaskProgress';
 import TaskSubmit from './CreateTask/TaskSubmit';
@@ -37,7 +37,7 @@ const Entry = () => {
 							<TaskName />
 							<TaskURL />
 							<TaskProject />
-							<TaskDescription />
+							<TaskNotes />
 							<TaskEta />
 							<TaskProgress />
 							<TaskSubmit showForm={setIsFormShown} />

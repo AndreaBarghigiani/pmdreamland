@@ -1,3 +1,15 @@
+export const taskStatus = [
+	{ value: 'in-development', text: 'In Development' },
+	{ value: 'sanity-check', text: 'Sanity Check' },
+	{ value: 'qa-ready', text: 'QA Ready' },
+	{ value: 'require-feedback', text: 'Require Feedback' },
+];
+
+export function getStatusText(value, status = taskStatus) {
+	value = value || status[0].value;
+	return status.filter(item => item.value === value)[0].text;
+}
+
 export const taskEta = [
 	{ value: 'tomorrow', text: 'Tomorrow' },
 	{ value: 'two-three-days', text: 'Two or three days' },
@@ -7,14 +19,8 @@ export const taskEta = [
 	{ value: 'more', text: 'More...' },
 ];
 
-export const taskStatus = [
-	{ value: 'in-development', text: 'In Development' },
-	{ value: 'sanity-check', text: 'Sanity Check' },
-	{ value: 'qa-ready', text: 'QA Ready' },
-	{ value: 'require-feedback', text: 'Require Feedback' },
-];
-
 export function getEtaText(value, etas = taskEta) {
+	value = value || etas[0].value;
 	return etas.filter(item => item.value === value)[0].text;
 }
 
