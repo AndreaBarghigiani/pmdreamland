@@ -16,6 +16,7 @@ import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
 import TaskDescription from './CreateTask/TaskDescription';
 import TaskEta from './CreateTask/TaskEta';
+import TaskStatus from './CreateTask/TaskStatus';
 import TaskProgress from './CreateTask/TaskProgress';
 import TaskSubmit from './CreateTask/TaskSubmit';
 
@@ -36,7 +37,7 @@ const TaskModal = ({ isOpen, onClose, task = null }) => {
 							<TaskProject label={'Project'} />
 							<TaskDescription label={'Description'} />
 							<TaskEta label={'ETA'} />
-							{/* <TaskStatus label={'Status'} /> */}
+							<TaskStatus label={'Status'} />
 							<TaskProgress label={'Progress'} />
 						</Stack>
 					</ModalBody>

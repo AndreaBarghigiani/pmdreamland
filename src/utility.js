@@ -7,9 +7,14 @@ export const taskEta = [
 	{ value: 'more', text: 'More...' },
 ];
 
+export const taskStatus = [
+	{ value: 'in-development', text: 'In Development' },
+	{ value: 'sanity-check', text: 'Sanity Check' },
+	{ value: 'qa-ready', text: 'QA Ready' },
+	{ value: 'require-feedback', text: 'Require Feedback' },
+];
+
 export function getEtaText(value, etas = taskEta) {
-	console.log('value', value);
-	console.log('etas', etas);
 	return etas.filter(item => item.value === value)[0].text;
 }
 
