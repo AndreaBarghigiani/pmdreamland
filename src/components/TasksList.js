@@ -17,12 +17,22 @@ import TaskModal from './TaskModal';
 
 import { fetchUserTasks } from '../lib/Store';
 import { useUser } from '../lib/UserContext';
+import { getEtaText, getStatusText } from '../utility';
 
-function transformTaskToString(index, { name, progress }) {
+function transformTaskToString(
+	index,
+	{ name, progress, status, eta, description, url }
+) {
+	const statusText = getStatusText(status);
+	const etaText = getEtaText(eta);
 	const taskString = `
 *Task ${++index}*
-_Title_: ${name}
+_Jira Link_: ${url}
+_Title: *${name}*_
+_Notes_: ${description}
 _Progress_: ${progress}
+_ETA_: ${etaText}
+_Status_: ${statusText}
 ----------------------------------------`;
 	return taskString;
 }
@@ -119,15 +129,21 @@ const TasksList = () => {
 							Copy for Slack
 						</Button>
 					</Flex>
-					<TaskModal isOpen={isOpen} onClose={onClose} task={task} />
 				</Stack>
 			) : (
 				<>
 					<Heading>No tasks found...</Heading>
-					<Button onClick={openModal} colorScheme={'green'}>Add your first task</Button>
+					<Button onClick={openModal} colorScheme={'green'}>
+						Add your first task
+					</Button>
 				</>
 			)}
-			<TaskModal isOpen={isOpen} onClose={onClose} task={task} updateTasks={updateTasks} />
+			<TaskModal
+				isOpen={isOpen}
+				onClose={onClose}
+				task={task}
+				updateTasks={updateTasks}
+			/>
 		</>
 	);
 };
