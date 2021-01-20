@@ -23,7 +23,6 @@ import TaskSubmit from './CreateTask/TaskSubmit';
 import { FormProvider } from '../lib/FormContext';
 
 const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
-	console.log('isOpen?', isOpen);
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />

@@ -33,7 +33,6 @@ export default function SingleTask({ view = 'user', task, openModal }) {
 				cursor: 'pointer',
 				textDecoration: 'none',
 			}}
-			isExternal
 		>
 			<Tag colorScheme={etaColor} mb={4} size="sm" variant="solid">
 				{etaText}

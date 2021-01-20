@@ -18,7 +18,7 @@ const Auth = () => {
 	return (
 		<>
 			{user ? (
-				<>	
+				<>
 					<Menu>
 						<MenuButton
 							as={Avatar}
@@ -31,11 +31,7 @@ const Auth = () => {
 							<MenuItem>
 								<Link to="/profile">Profile</Link>
 							</MenuItem>
-							<MenuItem
-								as="Button"
-								name="logout"
-								onClick={() => supabase.auth.signOut()}
-							>
+							<MenuItem onClick={() => supabase.auth.signOut()}>
 								Logout
 							</MenuItem>
 						</MenuList>
