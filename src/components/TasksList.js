@@ -6,6 +6,7 @@ import {
 	Spacer,
 	Tooltip,
 	IconButton,
+	Button,
 	useDisclosure,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
@@ -41,7 +42,8 @@ const TasksList = () => {
 	};
 
 	// Opening modal for editing
-	const openModal = (task = null) => {
+	const openModal = (e, task = null) => {
+		e.preventDefault();
 		setTask(task);
 		onOpen();
 	};
@@ -58,11 +60,11 @@ const TasksList = () => {
 						<Tooltip label="Add task" placement="right">
 							<IconButton
 								aria-label="Add task"
-								colorScheme="orange"
+								colorScheme="green"
 								icon={<AddIcon />}
 								isRound
 								onClick={openModal}
-								mr={3}
+								ml={3}
 								size="xs"
 							/>
 						</Tooltip>
@@ -70,11 +72,14 @@ const TasksList = () => {
 					{tasks.map(task => (
 						<SingleTask key={task.id} task={task} openModal={openModal} />
 					))}
-					<TaskModal isOpen={isOpen} onClose={onClose} task={task} updateTasks={updateTasks} />
 				</Stack>
 			) : (
-				<Heading>No tasks found...</Heading>
+				<>
+					<Heading>No tasks found...</Heading>
+					<Button onClick={openModal} colorScheme={'green'}>Add your first task</Button>
+				</>
 			)}
+			<TaskModal isOpen={isOpen} onClose={onClose} task={task} updateTasks={updateTasks} />
 		</>
 	);
 };

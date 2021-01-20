@@ -18,7 +18,7 @@ export default function TaskEta({ label }) {
 
 	return (
 		<FormControl id="task-eta">
-			{label && <FormLabel fontWeight={600}>{label}</FormLabel>}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			{options.length > 0 ? (
 				<Select
 					bg={bg}

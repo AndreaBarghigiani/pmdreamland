@@ -16,9 +16,7 @@ export default function TaskDescription( { label } ) {
 	
 	return (
 		<FormControl>
-			{label && state.description !== '' ? (
-				<FormLabel fontWeight={600}>{label}</FormLabel>
-			) : null}
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			<Textarea
 				bg={bg}
 				placeholder="Task description"
