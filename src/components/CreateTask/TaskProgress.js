@@ -3,7 +3,6 @@ import * as React from 'react'
 import {
 	FormControl,
 	FormLabel,
-	FormHelperText,
 	Slider,
 	SliderTrack,
 	SliderFilledTrack,

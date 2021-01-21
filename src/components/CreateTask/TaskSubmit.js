@@ -16,7 +16,6 @@ export default function TaskSubmit({ onClose, fill = null, updateTasks }) {
 			
 		} else {
 			const addedTask = await addTask(formContent);
-			console.log('addedTask', addedTask);
 			if (addedTask) {
 				updateTasks(addedTask[0], true);
 			}
