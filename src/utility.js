@@ -3,6 +3,7 @@ export const taskStatus = [
 	{ value: 'sanity-check', text: 'Sanity Check' },
 	{ value: 'qa-ready', text: 'QA Ready' },
 	{ value: 'require-feedback', text: 'Require Feedback' },
+	{ value: 'blocked', text: 'Blocked' },
 ];
 
 export function getStatusText(value, status = taskStatus) {
@@ -11,6 +12,7 @@ export function getStatusText(value, status = taskStatus) {
 }
 
 export const taskEta = [
+	{ value: 'ready', text: 'Ready' },
 	{ value: 'tomorrow', text: 'Tomorrow' },
 	{ value: 'two-three-days', text: 'Two or three days' },
 	{ value: 'less-week', text: 'Less than a week' },
