@@ -8,6 +8,7 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	Stack,
+	SimpleGrid,
 } from '@chakra-ui/react';
 
 // internal dep
@@ -24,22 +25,22 @@ import { FormProvider } from '../lib/FormContext';
 
 const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
+		<Modal isOpen={isOpen} onClose={onClose} size={'xl'} isCentered>
 			<ModalOverlay />
 			<ModalContent>
 				<FormProvider>
 					<ModalHeader>{task ? 'Edit' : 'Add'} Task</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<Stack spacing={3}>
-							<TaskName fill={task} label={'Name'} />
+						<TaskName fill={task} label={'Name'} />
+						<SimpleGrid columns={2} spacing={5} mt={5} mb={5}>
 							<TaskURL label={'URL'} />
 							<TaskProject label={'Project'} />
-							<TaskNotes label={'Notes'} />
 							<TaskEta label={'ETA'} />
 							<TaskStatus label={'Status'} />
-							<TaskProgress label={'Progress'} />
-						</Stack>
+						</SimpleGrid>
+						<TaskProgress label={'Progress'} />
+						<TaskNotes label={'Notes'} />
 					</ModalBody>
 
 					<ModalFooter>
