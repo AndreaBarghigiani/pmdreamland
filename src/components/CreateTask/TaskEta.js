@@ -22,7 +22,6 @@ export default function TaskEta({ label }) {
 			{options.length > 0 ? (
 				<Select
 					bg={bg}
-					placeholder="Task ETA"
 					value={state.eta}
 					onChange={e => dispatch({ type: 'eta', data: e.target.value })}
 				>
