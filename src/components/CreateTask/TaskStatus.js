@@ -17,14 +17,11 @@ export default function TaskStatus({ label }) {
 	const [state, dispatch] = useForm();
 
 	return (
-		<FormControl id="task-eta">
-			{label && state.status !== '' ? (
-				<FormLabel fontWeight={600}>{label}</FormLabel>
-			) : null}
+		<FormControl id="task-status">
+			{label ? <FormLabel fontWeight={600}>{label}</FormLabel> : null}
 			{options.length > 0 ? (
 				<Select
 					bg={bg}
-					placeholder="Task Status"
 					value={state.status}
 					onChange={e => dispatch({ type: 'status', data: e.target.value })}
 				>
