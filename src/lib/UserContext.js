@@ -36,7 +36,7 @@ export function UserProvider(props) {
 		return () => {
 			authListener.unsubscribe();
 		};
-	}, [setUser]);
+	}, []);
 
 	const value = [publicUser, user, session];
 
