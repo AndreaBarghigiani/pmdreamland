@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 
 // internal dep
+import TaskCompleted from './CreateTask/TaskCompleted';
 import TaskName from './CreateTask/TaskName';
 import TaskURL from './CreateTask/TaskURL';
 import TaskProject from './CreateTask/TaskProject';
@@ -41,8 +42,8 @@ const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 						<TaskProgress label={'Progress'} />
 						<TaskNotes label={'Notes'} />
 					</ModalBody>
-
 					<ModalFooter>
+						<TaskCompleted />
 						<TaskSubmit
 							onClose={onClose}
 							fill={task}

@@ -22,6 +22,10 @@ export default function TaskName({ withIcon = true, fill, label }) {
 	React.useEffect(() => {
 		dispatch({ type: 'user_id', data: users.id });
 	}, [users, dispatch]);
+
+	React.useEffect(() => {
+		dispatch({ type: 'update', data: new Date().toISOString() });
+	}, [dispatch]);
 	
 	React.useEffect(() => {
 		dispatch({ type: 'fill', data: fill });

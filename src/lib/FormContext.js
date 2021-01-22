@@ -16,6 +16,11 @@ const initialFormContent = {
 
 function formReducer(state, action) {
 	switch (action.type) {
+		case 'update':
+			return {
+				...state,
+				edited_at: action.data,
+			};
 		case 'name':
 			return {
 				...state,
@@ -55,6 +60,14 @@ function formReducer(state, action) {
 			return {
 				...state,
 				user_id: action.data,
+			};
+		case 'completed':
+			console.log('data', action.data);;
+			return {
+				...state,
+				completed: action.data,
+				progress: action.data ? 100 : state.prevProgress,
+				prevProgress: state.progress,
 			};
 		case 'empty':
 			return initialFormContent;
