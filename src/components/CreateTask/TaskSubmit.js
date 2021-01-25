@@ -8,7 +8,11 @@ export default function TaskSubmit({ onClose, fill = null, updateTasks }) {
 	const [formContent, dispatch] = useForm();
 
 	async function handleSubmit(e) {
+		e.preventDefault();
+
 		if (fill) {
+			delete formContent?.prevProgress;
+			formContent.edited_at = new Date().toISOString();
 			const updateState = await updateTask(formContent);
 			if (updateState) {
 				updateTasks(updateState[0]);
