@@ -62,7 +62,6 @@ function formReducer(state, action) {
 				user_id: action.data,
 			};
 		case 'completed':
-			console.log('data', action.data);;
 			return {
 				...state,
 				completed: action.data,

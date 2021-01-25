@@ -43,7 +43,7 @@ export const fetchUserTasks = async userId => {
 			.from('tasks')
 			.select('*')
 			.eq('user_id', userId)
-			.neq('progress', 100);
+			.eq('completed', false);
 		if (error) {
 			throw new Error(error);
 		}
