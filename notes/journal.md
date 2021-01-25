@@ -21,3 +21,6 @@ The UI for the bulk edit is working and I am able to update the local state with
 
 ### Day 5
 Decided to leave for the moment the Bulk edit feature to focus on the "Copy for Slack" one. To create this I have to transform the HTML used for the tasks to create a simpler version that a MarkDown parser can easily pick up. 
+
+### Day 6
+Today has been bit slow. Tried to improve modal styles, fixed minor UI issues here and there but did't feel like doing something huge. Probably because **Copy for Slack** already works great and I've already started to use this POC for my day to day reports. There are some things that I would like to improve but the issues are there for a reason :wink:

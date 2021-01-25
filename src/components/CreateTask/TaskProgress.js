@@ -3,7 +3,6 @@ import * as React from 'react'
 import {
 	FormControl,
 	FormLabel,
-	FormHelperText,
 	Slider,
 	SliderTrack,
 	SliderFilledTrack,
@@ -17,7 +16,11 @@ export default function TaskProgress( { label } ){
 
 	return (
 		<FormControl id="task-progress">
-			{ label ? <FormLabel fontWeight={600}>{label}: {state.progress}%</FormLabel> : null}
+			{label ? (
+				<FormLabel fontWeight={600}>
+					{label}: {state.progress}%
+				</FormLabel>
+			) : null}
 			<Slider
 				aria-label="task-progress"
 				value={state.progress}
@@ -29,7 +32,6 @@ export default function TaskProgress( { label } ){
 				</SliderTrack>
 				<SliderThumb />
 			</Slider>
-			
 		</FormControl>
 	);
 }
