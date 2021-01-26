@@ -8,8 +8,8 @@ const initialFormContent = {
 	url: '',
 	project: '',
 	description: '',
-	eta: '',
-	status: '',
+	eta: 'ready',
+	status: 'in-development',
 	progress: 30,
 	user_id: '',
 };
