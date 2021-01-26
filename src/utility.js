@@ -27,8 +27,10 @@ export function getEtaText(value, etas = taskEta) {
 }
 
 export function getEtaColor(value, etas = taskEta) {
+	value = value === '' ? 'tomorrow' : value;
 	const match = etas.filter(item => item.value === value);
 	switch (match[0].value) {
+		case 'ready':
 		case 'tomorrow':
 			return 'green';
 		case 'two-three-days':
