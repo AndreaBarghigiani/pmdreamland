@@ -88,6 +88,20 @@ export const updateTask = async task => {
 	}
 };
 
+export const deleteTask = async task => {
+	try {
+		const { data, error } = await supabase
+			.from('tasks')
+			.delete()
+			.eq('id', task.id);
+		if (error) {
+			throw new Error(error);
+		}
+		return data;
+	} catch (error) {
+		console.log('error in deleteTask', error);
+	}
+};
 /**
  * Add a new user in database. Already check if user exists with getPublicUser
  * @returns {Object} The tasks list

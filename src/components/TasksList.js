@@ -67,8 +67,21 @@ const TasksList = () => {
 
 	// Kinda Optimistic Update
 	// Momentarly set tasks, next implementation will use React Query
-	function updateTasks(updatedTask, isNew = false ) {
-		const updatedTasks = tasks.map(task => {
+	function updateTasks(updatedTask, { isNew = false, toDelete = false } = {} ) {
+		let updatedTasks;
+		
+		if(isNew){
+			updatedTasks = [ ...tasks, updatedTask];
+			return setTasks(updatedTasks);
+		}
+
+		if(toDelete){
+			updatedTasks = tasks.filter(task => task.id !== updatedTask.id);
+			return setTasks(updatedTasks);
+		}
+		
+		// Keep the updating, more expensive, job at the end in order to run it only if needed.
+		updatedTasks = tasks.map(task => {
 			if (task.id === updatedTask.id) {
 				task = updatedTask;
 			}
@@ -76,9 +89,6 @@ const TasksList = () => {
 			return task;
 		});
 
-		if(isNew){
-			updatedTasks.push(updatedTask);
-		}
 		
 		setTasks(updatedTasks);
 	}

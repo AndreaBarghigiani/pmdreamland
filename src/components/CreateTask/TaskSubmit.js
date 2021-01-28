@@ -21,7 +21,7 @@ export default function TaskSubmit({ onClose, fill = null, updateTasks }) {
 		} else {
 			const addedTask = await addTask(formContent);
 			if (addedTask) {
-				updateTasks(addedTask[0], true);
+				updateTasks(addedTask[0], { isNew: true });
 			}
 		}
 		dispatch({ type: 'empty' });

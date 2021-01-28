@@ -19,6 +19,7 @@ import TaskNotes from './CreateTask/TaskNotes';
 import TaskEta from './CreateTask/TaskEta';
 import TaskStatus from './CreateTask/TaskStatus';
 import TaskProgress from './CreateTask/TaskProgress';
+import TaskDelete from './CreateTask/TaskDelete';
 import TaskSubmit from './CreateTask/TaskSubmit';
 
 import { FormProvider } from '../lib/FormContext';
@@ -44,6 +45,11 @@ const TaskModal = ({ isOpen, onClose, task = null, updateTasks }) => {
 					</ModalBody>
 					<ModalFooter>
 						<TaskCompleted />
+						<TaskDelete
+							task={task}
+							onClose={onClose}
+							updateTasks={updateTasks}
+						/>
 						<TaskSubmit
 							onClose={onClose}
 							fill={task}
