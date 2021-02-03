@@ -24,3 +24,6 @@ Decided to leave for the moment the Bulk edit feature to focus on the "Copy for 
 
 ### Day 6
 Today has been bit slow. Tried to improve modal styles, fixed minor UI issues here and there but did't feel like doing something huge. Probably because **Copy for Slack** already works great and I've already started to use this POC for my day to day reports. There are some things that I would like to improve but the issues are there for a reason :wink:
+
+### Day 7 - 14
+Crazy days at work and was't able to update the project as I would love to, added some feature ideas though that will be implemented soon. Simple stuff but it'll make the app more usable.
