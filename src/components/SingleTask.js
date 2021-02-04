@@ -13,16 +13,19 @@ import {
 import { getEtaText, getEtaColor } from '../utility';
 
 export default function SingleTask({ view = 'user', task, openModal }) {
-	const { progress, name, description, eta } = task;
+	console.log('task:', task);
+	const { progress, name, description, eta, completed } = task;
 	const etaText = getEtaText(eta);
 	const etaColor = getEtaColor(eta);
 
 	return (
 		<Box
-			bg="gray.50"
+			bg={completed ? 'green.50' : 'gray.50'}
 			p={5}
+			border={completed ? '1px' : ''}
+			borderColor={completed ? 'green.200' : ''}
 			borderRadius="8px"
-			boxShadow="base"
+			boxShadow={completed ? 'inner' : 'base'}
 			maxW="xl"
 			textAlign="left"
 			onClick={e => openModal(e, task)}
