@@ -3,6 +3,8 @@ export const taskStatus = [
 	{ value: 'sanity-check', text: 'Sanity Check' },
 	{ value: 'qa-ready', text: 'QA Ready' },
 	{ value: 'require-feedback', text: 'Require Feedback' },
+	{ value: 'released', text: 'Released' },
+	{ value: 'done', text: 'Done' },
 	{ value: 'blocked', text: 'Blocked' },
 ];
 
