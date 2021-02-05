@@ -64,6 +64,7 @@ function formReducer(state, action) {
 		case 'completed':
 			return {
 				...state,
+				status: 'released',
 				completed: action.data,
 				progress: action.data ? 100 : state.prevProgress,
 				prevProgress: state.progress,
