@@ -3,6 +3,8 @@ export const taskStatus = [
 	{ value: 'sanity-check', text: 'Sanity Check' },
 	{ value: 'qa-ready', text: 'QA Ready' },
 	{ value: 'require-feedback', text: 'Require Feedback' },
+	{ value: 'released', text: 'Released' },
+	{ value: 'done', text: 'Done' },
 	{ value: 'blocked', text: 'Blocked' },
 ];
 
@@ -52,4 +54,30 @@ export const isObjectEmpty = obj => {
 	}
 
 	return true;
+};
+
+export const getTaskNumber = url => {
+	const re = /\d+/;
+	const match = re.exec(url);
+	if (match) {
+		return `#${match[0]}`;
+	}
+
+	return null;
+};
+
+/**
+ * Simple function that let copy text from any field.
+ *
+ * @param {Object} item The element where we need to take text from.
+ *
+ * @return {boolean} If text already copied.
+ */
+export function copyToClipboard( item ) {
+	const fakeInput = document.createElement( 'textarea' );
+	fakeInput.value = item;
+	document.body.appendChild( fakeInput );
+	fakeInput.select();
+	document.execCommand( 'copy' );
+	document.body.removeChild( fakeInput );
 };
