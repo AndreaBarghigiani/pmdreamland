@@ -17,7 +17,7 @@ import TaskModal from './TaskModal';
 
 import { fetchUserTasks } from '../lib/Store';
 import { useUser } from '../lib/UserContext';
-import { getEtaText, getStatusText } from '../utility';
+import { getEtaText, getStatusText, copyToClipboard } from '../utility';
 
 function transformTaskToString(
 	index,
@@ -36,22 +36,6 @@ _ETA_: ${etaText}
 _Status_: ${statusText}
 ----------------------------------------`;
 }
-
-/**
- * Simple function that let copy text from any field.
- *
- * @param {Object} item The element where we need to take text from.
- *
- * @return {boolean} If text already copied.
- */
-function copyToClipboard( item ) {
-	const fakeInput = document.createElement( 'textarea' );
-	fakeInput.value = item;
-	document.body.appendChild( fakeInput );
-	fakeInput.select();
-	document.execCommand( 'copy' );
-	document.body.removeChild( fakeInput );
-};
 
 const TasksList = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
